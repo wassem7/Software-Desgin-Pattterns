@@ -1,14 +1,39 @@
 "use strict";
-class Animal {
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
-    }
-    feed(food, amount) {
-        console.log(`Food : ${food}, Amount : ${amount}`);
+class ConcreteProduct {
+    constructor() {
+        this.name = '';
     }
 }
-class Dog extends Animal {
+class ConcreteProductA extends ConcreteProduct {
+    constructor() {
+        super();
+        this.name = 'Product A';
+    }
 }
-const kwadwo = new Dog('spike', 2);
-kwadwo.feed('eggs', 3);
+class ConcreteProductB extends ConcreteProduct {
+    constructor() {
+        super();
+        this.name = 'Product B';
+    }
+}
+class ConcreteProductC extends ConcreteProduct {
+    constructor() {
+        super();
+        this.name = 'Product B';
+    }
+}
+class Creator {
+    static createObject(property) {
+        if (property === 'a') {
+            return new ConcreteProductA();
+        }
+        else if (property === 'b') {
+            return new ConcreteProductB();
+        }
+        else {
+            return new ConcreteProductC();
+        }
+    }
+}
+const product = Creator.createObject('a');
+console.log(product.name);
